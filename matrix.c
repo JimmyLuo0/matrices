@@ -52,9 +52,9 @@ multiply a by b, modifying b to be the product
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
-  for(int row_of_a = 0; row_of_a < a->rows; row_of_a++){
-    for(int col_of_b; col_of_b < b->cols; col_of_b++){
-
+  for(int col_of_b; col_of_b < b->cols; col_of_b++){
+    for(int row_of_a = 0; row_of_a < a->rows; row_of_a++){
+      b->m[col_of_b][row_of_a] = a->m[col_of_b]
     }
   }
 }
