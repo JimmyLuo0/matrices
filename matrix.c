@@ -22,8 +22,8 @@ print the matrix such that it looks like
 the template in the top comment
 */
 void print_matrix(struct matrix *m) {
-  for(int n = 0; n < m->cols; n++){
-    for(int i = 0; i < m->rows; i++){
+  for(int n = 0; n < m->rows; n++){
+    for(int i = 0; i < m->cols; i++){
       printf("%lf ", m->m[i][n]);
     }
     printf("\n");
@@ -37,9 +37,13 @@ Inputs:  struct matrix *m <-- assumes m is a square matrix
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
-  *m = *new_matrix(4, 4);
-  for(int i = 0; i < 4; i++){
-    m->m[i][i] = 1.0;
+  for(int col = 0; col < 4; col++){
+    for(int row = 0; row < 4; row++){
+      if(row == col)
+        m->m[col][row] = 1;
+      else
+        m->m[col][row] = 0;
+    }
   }
 }
 
@@ -59,6 +63,7 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
         b->m[col_of_b][row_of_a] = ans + (a->m[row_of_a][i])*(b->m[col_of_b][row_of_a]);
         i++;
     }
+    ans = 0;
     i = 0;
   }
 }
